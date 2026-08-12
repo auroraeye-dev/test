@@ -81,5 +81,8 @@ Bonsai [icon: azure::Bonsai, pos: 544,794]
 
 pydantic [icon: ai::pydantic, pos: 1409,446]
 
-zone "Shape 1" [color: blue, shape: rectangle, border: solid, textColor: #FFFFFF, pos: 1264,420, size: 505,193, name: zone undetected] {
+zone "Shape 1" [color: blue, shape: rectangle, border: solid, textColor: #ec3a3a, pos: 1264,420, size: 505,193, name: zone undetected] {
+}
+
+zone "Text 1" [color: blue, shape: text, border: dashed, textColor: #ec3a3a, pos: 571,259, size: 514,142, name: this is a text edited branch.] {
 }
