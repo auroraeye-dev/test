@@ -78,3 +78,8 @@ Identity Service > Security Information Event Monitor
 Executive Supply Chain Dashboard > Supply Planner Portal
 
 Bonsai [icon: azure::Bonsai, pos: 544,794]
+
+pydantic [icon: ai::pydantic, pos: 1409,446]
+
+zone "Shape 1" [color: blue, shape: rectangle, border: solid, textColor: #FFFFFF, pos: 1264,420, size: 505,193, name: zone undetected] {
+}
