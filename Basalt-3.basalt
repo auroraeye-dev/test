@@ -1,0 +1,87 @@
+title: Automotive Manufacturing OT
+summary: Car assembly plant network
+
+zone "Enterprise Network" [level: 4-5, color: blue, pos: 32,47, size: 550,180] {
+  SAP ERP System [icon: sap-erp, pos: 97,95]
+  Corporate Active Directory [icon: active-directory, pos: 798,103]
+  Corporate SIEM Platform [icon: siem, pos: 449,95]
+}
+
+zone "Industrial DMZ" [level: dmz, color: orange, pos: 32,281, size: 726,330] {
+  Enterprise Edge Firewall [icon: firewall, pos: 273,329]
+  DMZ Perimeter Firewall [icon: firewall, pos: 449,439]
+  DMZ Historian Mirror [icon: historian, pos: 97,439]
+  DMZ Jump Server [icon: jump-server, pos: 625,439]
+  DMZ Patch Repository [icon: server, pos: 273,439]
+}
+
+zone "Manufacturing Operations" [level: 2-3, color: purple, pos: 364,665, size: 567,540] {
+  Plant Core Firewall [icon: firewall, pos: 490,1043]
+  Plant SCADA Server [icon: scada, pos: 575,933]
+  Plant Historian Server [icon: historian-server, pos: 798,1043]
+  OT Engineering Workstation [icon: engineering-station, pos: 429,823]
+  OT Domain Controller [icon: active-directory, pos: 863,412]
+}
+
+zone "Assembly Control" [level: 1, color: green, pos: 125,1295, size: 726,180] {
+  Assembly Line PLC A [icon: allen-bradley, pos: 366,1343]
+  Assembly Line PLC B [icon: allen-bradley, pos: 190,1343]
+  Body Conveyor RTU [icon: rtu, pos: 718,1343]
+  Weld Cell Controller [icon: plc, pos: 542,1343]
+}
+
+zone "Assembly Process" [level: 0, color: yellow, pos: 125,1529, size: 726,180] {
+  Chassis Torque Sensors [icon: sensor, pos: 366,1577]
+  Paint Booth Actuators [icon: actuator, pos: 190,1577]
+  Weld Robot Cluster [icon: robot, pos: 542,1577]
+  VIN Barcode Scanner [icon: sensor, pos: 718,1577]
+}
+
+"Enterprise Network" > "Industrial DMZ" [conduit: HTTPS:443]
+"Industrial DMZ" > "Manufacturing Operations" [conduit: OPC-UA:4840]
+"Manufacturing Operations" > "Assembly Control" [conduit: EtherNet/IP:44818]
+"Assembly Control" > "Assembly Process" [conduit: PROFINET]
+
+SAP ERP System > Enterprise Edge Firewall [firewall, conduit: HTTPS:443]
+Corporate Active Directory > Enterprise Edge Firewall [firewall, conduit: LDAPS:636]
+Corporate SIEM Platform > Enterprise Edge Firewall [firewall, conduit: Syslog:6514]
+
+Enterprise Edge Firewall > DMZ Historian Mirror [firewall, conduit: HTTPS:443]
+Enterprise Edge Firewall > DMZ Jump Server [firewall, conduit: HTTPS:443]
+Enterprise Edge Firewall > DMZ Patch Repository [firewall, conduit: HTTPS:443]
+DMZ Perimeter Firewall > Plant SCADA Server [firewall, conduit: OPC-UA:4840]
+DMZ Perimeter Firewall > Plant Historian Server [firewall, conduit: OPC-UA:4840]
+DMZ Perimeter Firewall > OT Engineering Workstation [firewall, conduit: HTTPS:443]
+DMZ Perimeter Firewall > OT Domain Controller [firewall, conduit: LDAPS:636]
+Plant Core Firewall > Assembly Line PLC A [firewall, conduit: EtherNet/IP:44818]
+Plant Core Firewall > Assembly Line PLC B [firewall, conduit: EtherNet/IP:44818]
+Plant Core Firewall > Body Conveyor RTU [firewall, conduit: Modbus TCP:502]
+Plant Core Firewall > Weld Cell Controller [firewall, conduit: EtherNet/IP:44818]
+
+Plant Historian Server > DMZ Historian Mirror [conduit: OPC-UA:4840]
+DMZ Historian Mirror > SAP ERP System [firewall, conduit: REST/TLS]
+DMZ Historian Mirror > Corporate SIEM Platform [firewall, conduit: Syslog:6514]
+
+DMZ Jump Server > Plant SCADA Server [firewall, conduit: RDP]
+DMZ Jump Server > OT Engineering Workstation [firewall, conduit: RDP]
+DMZ Jump Server > Corporate Active Directory [firewall, conduit: LDAPS:636]
+
+DMZ Patch Repository > OT Engineering Workstation [firewall, conduit: HTTPS:443]
+OT Engineering Workstation > Plant SCADA Server [conduit: OPC-UA:4840]
+OT Engineering Workstation > Assembly Line PLC A [conduit: EtherNet/IP:44818]
+
+OT Domain Controller > Plant SCADA Server [conduit: Kerberos]
+OT Domain Controller > OT Engineering Workstation [conduit: Kerberos]
+OT Domain Controller > DMZ Jump Server [firewall, conduit: Kerberos]
+OT Domain Controller > Corporate Active Directory [firewall, conduit: LDAPS:636]
+
+Plant SCADA Server > Assembly Line PLC A [conduit: EtherNet/IP:44818]
+Plant SCADA Server > Assembly Line PLC B [conduit: EtherNet/IP:44818]
+Plant SCADA Server > Body Conveyor RTU [conduit: Modbus TCP:502]
+Plant SCADA Server > Weld Cell Controller [conduit: EtherNet/IP:44818]
+Plant SCADA Server > Plant Historian Server [conduit: OPC-UA:4840]
+
+Assembly Line PLC A > Chassis Torque Sensors [conduit: PROFINET]
+Assembly Line PLC B > Paint Booth Actuators [conduit: PROFINET]
+Weld Cell Controller > Weld Robot Cluster [conduit: EtherNet/IP]
+Body Conveyor RTU > VIN Barcode Scanner [conduit: Modbus TCP:502]
