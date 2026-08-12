@@ -1,0 +1,80 @@
+title: Enterprise Supply Chain Platform
+summary: End-to-end SCM enterprise services
+
+zone "User Channels" [color: blue, pos: 3070,52, size: 198,462] {
+  Supply Planner Portal [icon: users, pos: 3135,382]
+  Procurement Workspace [icon: users, pos: 3135,100]
+  Warehouse Supervisor App [icon: users, pos: 3135,288]
+  Supplier EDI Gateway [icon: api-gateway, pos: 3135,194]
+}
+
+zone "Application Services" [color: purple, pos: 793,617, size: 468,598] {
+  API Gateway Service [icon: api-gateway, pos: 846,910]
+  Order Management Service [icon: ecs, pos: 1086,768]
+  Inventory Management Service [icon: ecs, pos: 1086,862]
+  Procurement Service [icon: ecs, pos: 1086,1050]
+  Warehouse Management Service [icon: ecs, pos: 914,642]
+  Transportation Management Service [icon: ecs, pos: 1086,956]
+}
+
+zone "Core Enterprise Systems" [color: green, pos: 1554,651, size: 538,509] {
+  SAP S/4HANA ERP [icon: s4hana, pos: 1718,936]
+  Supplier Master Database [icon: rds, pos: 1718,1028]
+  Inventory Transaction Database [icon: aurora, pos: 1718,753]
+  Shipment Tracking Database [icon: dynamodb, pos: 1718,842]
+  Enterprise Message Bus [icon: eventbridge, pos: 1918,710]
+}
+
+zone "Planning & Analytics" [color: orange, pos: 2302,916, size: 602,274] {
+  Demand Forecasting Workspace [icon: sagemaker, pos: 2761,1058]
+  Data Lake Storage [icon: s3, pos: 2569,964]
+  ETL Pipeline Service [icon: glue, pos: 2377,964]
+  Enterprise Data Warehouse [icon: redshift, pos: 2569,1058]
+  Executive Supply Chain Dashboard [icon: quicksight, pos: 2761,964]
+}
+
+zone "Integration & Security" [color: red, pos: 84,819, size: 428,482] {
+  Identity Service [icon: iam, pos: 159,867]
+  Secrets Vault [icon: secrets-manager, pos: 369,923]
+  Encryption Key Service [icon: kms, pos: 369,1128]
+  Operations Monitoring [icon: cloudwatch, pos: 159,1169]
+  Audit Trail Service [icon: cloudtrail, pos: 159,1017]
+  Security Information Event Monitor [icon: siem, pos: 369,1017]
+}
+
+Supply Planner Portal > API Gateway Service
+Procurement Workspace > API Gateway Service
+Warehouse Supervisor App > API Gateway Service
+Supplier EDI Gateway > API Gateway Service
+
+API Gateway Service > Order Management Service, Inventory Management Service, Procurement Service, Warehouse Management Service, Transportation Management Service
+Identity Service > API Gateway Service, Supply Planner Portal, Procurement Workspace, Warehouse Supervisor App
+Secrets Vault > Order Management Service, Inventory Management Service, Procurement Service, Warehouse Management Service, Transportation Management Service
+Encryption Key Service > Supplier Master Database, Inventory Transaction Database, Shipment Tracking Database, Data Lake Storage, Enterprise Data Warehouse
+
+Order Management Service > SAP S/4HANA ERP, Inventory Transaction Database, Enterprise Message Bus
+Inventory Management Service > Inventory Transaction Database, Enterprise Message Bus, SAP S/4HANA ERP
+Procurement Service > Supplier Master Database, SAP S/4HANA ERP, Enterprise Message Bus
+Warehouse Management Service > Inventory Transaction Database, Shipment Tracking Database, Enterprise Message Bus
+Transportation Management Service > Shipment Tracking Database, Enterprise Message Bus, SAP S/4HANA ERP
+
+SAP S/4HANA ERP > Enterprise Message Bus
+Supplier Master Database > ETL Pipeline Service
+Inventory Transaction Database > ETL Pipeline Service
+Shipment Tracking Database > ETL Pipeline Service
+Enterprise Message Bus > ETL Pipeline Service, Operations Monitoring
+
+ETL Pipeline Service > Data Lake Storage, Enterprise Data Warehouse
+Data Lake Storage > Demand Forecasting Workspace, Executive Supply Chain Dashboard
+Enterprise Data Warehouse > Executive Supply Chain Dashboard, Demand Forecasting Workspace
+Demand Forecasting Workspace > SAP S/4HANA ERP
+
+Operations Monitoring > Order Management Service, Inventory Management Service, Procurement Service, Warehouse Management Service, Transportation Management Service, ETL Pipeline Service
+Audit Trail Service > Security Information Event Monitor
+API Gateway Service > Audit Trail Service
+SAP S/4HANA ERP > Audit Trail Service
+Operations Monitoring > Security Information Event Monitor
+Identity Service > Security Information Event Monitor
+Executive Supply Chain Dashboard > Supply Planner Portal
+
+Bonsai [icon: azure::Bonsai, pos: 544,794]
