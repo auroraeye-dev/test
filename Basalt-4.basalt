@@ -13,7 +13,7 @@ zone "Application Services" [color: purple, pos: 793,617, size: 468,598] {
   Order Management Service [icon: ecs, pos: 1086,768]
   Inventory Management Service [icon: ecs, pos: 1086,862]
   Procurement Service [icon: ecs, pos: 1086,1050]
-  Warehouse Management Service [icon: ecs, pos: 914,642]
+  Warehouse Management Service [icon: ecs, pos: 880,32]
   Transportation Management Service [icon: ecs, pos: 1086,956]
 }
 
