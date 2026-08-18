@@ -13,7 +13,7 @@ zone "Application Services" [color: purple, pos: 793,617, size: 468,598] {
   Order Management Service [icon: ecs, pos: 1086,768]
   Inventory Management Service [icon: ecs, pos: 1086,862]
   Procurement Service [icon: ecs, pos: 1086,1050]
-  Warehouse Management Service [icon: ecs, pos: 880,32]
+  Warehouse Management Service [icon: ecs, pos: 1161,288]
   Transportation Management Service [icon: ecs, pos: 1086,956]
 }
 
@@ -49,7 +49,8 @@ Supplier EDI Gateway > API Gateway Service
 
 API Gateway Service > Order Management Service, Inventory Management Service, Procurement Service, Warehouse Management Service, Transportation Management Service
 Identity Service > API Gateway Service, Supply Planner Portal, Procurement Workspace, Warehouse Supervisor App
-Secrets Vault > Order Management Service, Inventory Management Service, Procurement Service, Warehouse Management Service, Transportation Management Service
+Secrets Vault > Warehouse Management Service [firewall]
+Secrets Vault > Order Management Service, Inventory Management Service, Procurement Service, Transportation Management Service
 Encryption Key Service > Supplier Master Database, Inventory Transaction Database, Shipment Tracking Database, Data Lake Storage, Enterprise Data Warehouse
 
 Order Management Service > SAP S/4HANA ERP, Inventory Transaction Database, Enterprise Message Bus
@@ -69,7 +70,8 @@ Data Lake Storage > Demand Forecasting Workspace, Executive Supply Chain Dashboa
 Enterprise Data Warehouse > Executive Supply Chain Dashboard, Demand Forecasting Workspace
 Demand Forecasting Workspace > SAP S/4HANA ERP
 
-Operations Monitoring > Order Management Service, Inventory Management Service, Procurement Service, Warehouse Management Service, Transportation Management Service, ETL Pipeline Service
+Operations Monitoring > Warehouse Management Service [conduit: SSH]
+Operations Monitoring > Order Management Service, Inventory Management Service, Procurement Service, Transportation Management Service, ETL Pipeline Service
 Audit Trail Service > Security Information Event Monitor
 API Gateway Service > Audit Trail Service
 SAP S/4HANA ERP > Audit Trail Service
