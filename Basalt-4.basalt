@@ -13,7 +13,7 @@ zone "Application Services" [color: purple, pos: 793,617, size: 468,598] {
   Order Management Service [icon: ecs, pos: 1086,768]
   Inventory Management Service [icon: ecs, pos: 1086,862]
   Procurement Service [icon: ecs, pos: 1086,1050]
-  Warehouse Management Service [icon: ecs, pos: 1161,288]
+  Warehouse Management Service [icon: ecs, pos: 1573,466]
   Transportation Management Service [icon: ecs, pos: 1086,956]
 }
 
@@ -81,7 +81,9 @@ Executive Supply Chain Dashboard > Supply Planner Portal
 
 Bonsai [icon: azure::Bonsai, pos: 544,794]
 
-pydantic [icon: ai::pydantic, pos: 1409,446]
+pydantic [icon: ai::pydantic, pos: 1339,517, name: pydantic system]
 
 zone "Shape 1" [color: blue, shape: rectangle, border: solid, textColor: #FFFFFF, pos: 1264,420, size: 505,193, name: zone undetected] {
 }
+
+Amazon Application Recovery Controller [icon: aws::Amazon Application Recovery Controller, pos: 1086,631]
