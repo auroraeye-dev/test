@@ -8,14 +8,9 @@ zone "User Channels" [color: blue, pos: 3070,52, size: 198,462] {
   Supplier EDI Gateway [icon: api-gateway, pos: 3135,194]
 }
 
-zone "Application Services" [color: purple, pos: 793,617, size: 468,598] {
   API Gateway Service [icon: api-gateway, pos: 846,910]
-  Order Management Service [icon: ecs, pos: 1086,768]
-  Inventory Management Service [icon: ecs, pos: 1086,862]
-  Procurement Service [icon: ecs, pos: 1086,1050]
   Warehouse Management Service [icon: ecs, pos: 1573,466]
-  Transportation Management Service [icon: ecs, pos: 1086,956]
-}
+  Transportation Management Service [icon: ecs, pos: 690,446]
 
 zone "Core Enterprise Systems" [color: green, pos: 1554,651, size: 538,509] {
   SAP S/4HANA ERP [icon: s4hana, pos: 1718,936]
@@ -53,9 +48,6 @@ Secrets Vault > Warehouse Management Service [firewall]
 Secrets Vault > Order Management Service, Inventory Management Service, Procurement Service, Transportation Management Service
 Encryption Key Service > Supplier Master Database, Inventory Transaction Database, Shipment Tracking Database, Data Lake Storage, Enterprise Data Warehouse
 
-Order Management Service > SAP S/4HANA ERP, Inventory Transaction Database, Enterprise Message Bus
-Inventory Management Service > Inventory Transaction Database, Enterprise Message Bus, SAP S/4HANA ERP
-Procurement Service > Supplier Master Database, SAP S/4HANA ERP, Enterprise Message Bus
 Warehouse Management Service > Inventory Transaction Database, Shipment Tracking Database, Enterprise Message Bus
 Transportation Management Service > Shipment Tracking Database, Enterprise Message Bus, SAP S/4HANA ERP
 
@@ -79,11 +71,10 @@ Operations Monitoring > Security Information Event Monitor
 Identity Service > Security Information Event Monitor
 Executive Supply Chain Dashboard > Supply Planner Portal
 
-Bonsai [icon: azure::Bonsai, pos: 544,794]
+Bonsai [icon: azure::Bonsai, pos: 914,1215]
 
 pydantic [icon: ai::pydantic, pos: 1339,517, name: pydantic system]
 
 zone "Shape 1" [color: blue, shape: rectangle, border: solid, textColor: #FFFFFF, pos: 1264,420, size: 505,193, name: zone undetected] {
 }
 
-Amazon Application Recovery Controller [icon: aws::Amazon Application Recovery Controller, pos: 1086,631]
